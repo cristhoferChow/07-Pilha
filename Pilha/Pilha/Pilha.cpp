@@ -76,6 +76,7 @@ void inicializar()
 
 void push()
 {
+
 	// aloca memoria dinamicamente para o novo elemento
 	NO* novo = (NO*)malloc(sizeof(NO));
 	if (novo == NULL)
@@ -87,13 +88,29 @@ void push()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
-
+	if (topo == NULL) {
+		topo = novo;
+	}
+	else {
+		novo->prox = topo;
+		topo = novo;
+	}
 }
+
+
 
 void pop()
 {
-
-	
+	if (topo == NULL) {
+		cout << "pilha vazia" << endl;
+		return;
+	}
+	else {
+		NO* aux = topo;
+		topo = topo->prox;
+		cout << "No topo: " << aux->valor << endl;
+		free(aux);
+	}
 
 }
 
